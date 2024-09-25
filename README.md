@@ -11,4 +11,10 @@
 
 * basic example: `bash /your/path/docker-oom-check/check-oom.sh /path/to/your-other-script.sh`
 * STDOUT will be sent to a bash instance running the shell script given as parameter
-* cron example `59 * * * * /bin/bash  /your/path/docker-oom-check/check-oom.sh /path/to/your-other-script.sh  &>/var/log/oom-notify.log`
+* cron example 
+
+```
+## send message if OOM exceded
+59 * * * * /bin/bash /etc/custom/docker-oom-check/check-oom.sh /etc/send-notification-oom.sh  &>/var/log/oom-notify.log
+
+```
