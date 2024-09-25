@@ -1,7 +1,9 @@
 #/bin/bash
-
+datetofind=$(date "+%b %d %T"|cut -d":" -f1)
+# wait 58 s , so we catch everything since cron should start us shortly after the minute
+sleep 58
 # the first argument has to be a bash script to which we will pipe the message
-grep  "$(date "+%b %d %T"|cut -d":" -f1)" /var/log/syslog |grep -q OOM && ( 
+grep  "$datetofind" /var/log/syslog |grep -q OOM && ( 
 
        (echo Out-Of-Memory found in /var/log/syslog; 
        echo "System status:"
